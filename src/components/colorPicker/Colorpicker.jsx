@@ -1,16 +1,20 @@
-export const Colorpicker = ({ options }) => {
-  return (
-    <div>
-      <h1 className="text">Color Picker</h1>
-      <ul>
-        {options.map(({ label, color }) => {
-          return (
-            <li>
-              <button style={{ background: color }}>{label}</button>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
-  );
-};
+import React from "react";
+
+export class ColorPicker extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1 className="text">Color Picker</h1>
+        <ul>
+          {this.props.options.map(({ label, color }) => {
+            return (
+              <li key={label}>
+                <button style={{ background: color }}>{label}</button>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    );
+  }
+}

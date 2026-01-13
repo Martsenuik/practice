@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Colorpicker } from "./components/colorPicker/Colorpicker";
+import { ColorPicker } from "./components/colorPicker/Colorpicker";
 import { Status } from "./components/status/Status";
 import { ProductList } from "./components/productList/ProductList";
+import { Counter } from "./components/counter/Counter";
 
 const colorPickerOptions = [
   { label: "red", color: "#F44336" },
@@ -23,9 +24,10 @@ const products = ["Хліб", "Молоко", "Сир", "Яблука"];
 function App() {
   return (
     <>
-      <Colorpicker options={colorPickerOptions} />
+      <ColorPicker options={colorPickerOptions} />
       <Status isOnline={user1.status} />
       <ProductList products={products} />
+      <Counter InitialValue={0} />
     </>
   );
 }
