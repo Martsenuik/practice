@@ -29,6 +29,17 @@ function App() {
       <ProductList products={products} />
       <Counter InitialValue={0} />
       <DropDown />
+      <form>
+        <label>
+          Name
+          <input type="text" name="name" />
+        </label>
+        <hr />
+        <label>
+          Email
+          <input type="email" name="mail" />
+        </label>
+      </form>
     </>
   );
 }
