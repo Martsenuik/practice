@@ -1,8 +1,8 @@
-import { useState } from "react";
 import { ColorPicker } from "./components/colorPicker/Colorpicker";
 import { Status } from "./components/status/Status";
 import { ProductList } from "./components/productList/ProductList";
 import { Counter } from "./components/counter/Counter";
+import { DropDown } from "./components/dropDown/DropDown";
 
 const colorPickerOptions = [
   { label: "red", color: "#F44336" },
@@ -28,6 +28,7 @@ function App() {
       <Status isOnline={user1.status} />
       <ProductList products={products} />
       <Counter InitialValue={0} />
+      <DropDown />
     </>
   );
 }
