@@ -4,6 +4,7 @@ import { Status } from "./components/status/Status";
 import { ProductList } from "./components/productList/ProductList";
 import { Counter } from "./components/counter/Counter";
 import { DropDown } from "./components/dropDown/DropDown";
+import { Form } from "./components/form/form";
 
 const colorPickerOptions = [
   { label: "red", color: "#F44336" },
@@ -23,23 +24,6 @@ const user1 = {
 const products = ["Хліб", "Молоко", "Сир", "Яблука"];
 
 export class App extends React.Component {
-  state = {
-    name: "",
-    mail: "",
-    message: "",
-  };
-
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
-  handleSubmit = (event) => {
-    event.preventDefault();
-    this.setState({
-      message: `Користувач ${this.state.name} зареєструвався під поштою ${this.state.mail}`,
-    });
-  };
-
   render() {
     return (
       <>
@@ -48,31 +32,7 @@ export class App extends React.Component {
         <ProductList products={products} />
         <Counter InitialValue={0} />
         <DropDown />
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Name
-            <input
-              onChange={this.handleChange}
-              type="text"
-              name="name"
-              value={this.state.name}
-            />
-          </label>
-          <hr />
-          <label>
-            Email
-            <input
-              onChange={this.handleChange}
-              type="email"
-              name="mail"
-              value={this.state.mail}
-            />
-          </label>
-          <button type="submit" name="button">
-            Click
-          </button>
-        </form>
-        <p>{this.state.message}</p>
+        <Form />
       </>
     );
   }
