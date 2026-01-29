@@ -1,3 +1,4 @@
+import React from "react";
 import { ColorPicker } from "./components/colorPicker/Colorpicker";
 import { Status } from "./components/status/Status";
 import { ProductList } from "./components/productList/ProductList";
@@ -21,27 +22,60 @@ const user1 = {
 
 const products = ["Хліб", "Молоко", "Сир", "Яблука"];
 
-function App() {
-  return (
-    <>
-      <ColorPicker options={colorPickerOptions} />
-      <Status isOnline={user1.status} />
-      <ProductList products={products} />
-      <Counter InitialValue={0} />
-      <DropDown />
-      <form>
-        <label>
-          Name
-          <input type="text" name="name" />
-        </label>
-        <hr />
-        <label>
-          Email
-          <input type="email" name="mail" />
-        </label>
-      </form>
-    </>
-  );
+export class App extends React.Component {
+  state = {
+    name: "",
+    mail: "",
+    message: "",
+  };
+
+  handleChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({ [name]: value });
+  };
+  handleSubmit = (event) => {
+    event.preventDefault();
+    this.setState({
+      message: `Користувач ${this.state.name} зареєструвався під поштою ${this.state.mail}`,
+    });
+  };
+
+  render() {
+    return (
+      <>
+        <ColorPicker options={colorPickerOptions} />
+        <Status isOnline={user1.status} />
+        <ProductList products={products} />
+        <Counter InitialValue={0} />
+        <DropDown />
+        <form onSubmit={this.handleSubmit}>
+          <label>
+            Name
+            <input
+              onChange={this.handleChange}
+              type="text"
+              name="name"
+              value={this.state.name}
+            />
+          </label>
+          <hr />
+          <label>
+            Email
+            <input
+              onChange={this.handleChange}
+              type="email"
+              name="mail"
+              value={this.state.mail}
+            />
+          </label>
+          <button type="submit" name="button">
+            Click
+          </button>
+        </form>
+        <p>{this.state.message}</p>
+      </>
+    );
+  }
 }
 
 export default App;
