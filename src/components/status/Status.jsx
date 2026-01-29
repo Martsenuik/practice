@@ -1,3 +1,8 @@
 export function Status({ isOnline }) {
-  return <p>{isOnline ? "Користувач онлайн" : "Користувач офлайн"}</p>;
+  return (
+    <div style={{ border: "5px solid green" }}>
+      <h2>Користувач онлайн?</h2>
+      <p>{isOnline ? "Так, користувач онлайн" : "Ні, користувач офлайн"}</p>
+    </div>
+  );
 }

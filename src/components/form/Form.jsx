@@ -25,8 +25,9 @@ export class Form extends React.Component {
 
   render() {
     return (
-      <>
+      <div style={{ border: "5px solid red" }}>
         <form onSubmit={this.handleSubmit}>
+          <h2>Форма</h2>
           <label>
             Name
             <input
@@ -36,7 +37,6 @@ export class Form extends React.Component {
               value={this.state.name}
             />
           </label>
-          <hr />
           <label>
             Email
             <input
@@ -52,7 +52,6 @@ export class Form extends React.Component {
         </form>
         <p>{this.state.message}</p>
         <b>Професфйний рівень</b>
-        <hr />
         <label>
           junior
           <input
@@ -84,7 +83,6 @@ export class Form extends React.Component {
             checked={this.state.expirence === "senior"}
           />
         </label>
-        <hr />
         <label>
           <input
             onChange={this.handleChekChange}
@@ -93,7 +91,7 @@ export class Form extends React.Component {
           />
           Погоджуюсь з умовами
         </label>
-      </>
+      </div>
     );
   }
 }

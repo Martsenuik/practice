@@ -8,6 +8,7 @@ export class DropDown extends React.Component {
   render() {
     return (
       <div className="Dropdown">
+        <h2>Випадашка</h2>
         <button
           type="button"
           className="Dropdown__toggle"
