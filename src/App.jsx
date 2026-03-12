@@ -1,10 +1,14 @@
 import React from "react";
+import { useState, useEffect } from "react";
 import { ColorPicker } from "./components/colorPicker/Colorpicker";
 import { Status } from "./components/status/Status";
 import { ProductList } from "./components/productList/ProductList";
 import { Counter } from "./components/counter/Counter";
 import { DropDown } from "./components/dropDown/DropDown";
 import { Form } from "./components/form/form";
+import { fetchPokemonByNames } from "./components/pokemon/PokemonApi";
+import { FormPokemon } from "./components/pokemon/FormPokemon";
+import { PokemonInfo } from "./components/pokemon/PokemonInfo";
 
 const colorPickerOptions = [
   { label: "red", color: "#F44336" },
@@ -23,19 +27,36 @@ const user1 = {
 
 const products = ["Хліб", "Молоко", "Сир", "Яблука"];
 
-export class App extends React.Component {
-  render() {
-    return (
-      <>
-        <ColorPicker options={colorPickerOptions} />
-        <Status isOnline={user1.status} />
-        <ProductList products={products} />
-        <Counter InitialValue={0} />
-        <DropDown />
-        <Form />
-      </>
-    );
-  }
-}
+export const App = () => {
+  const [pokemon, setPokemon] = useState(null);
+  const [pokemonName, setPokemonName] = useState("");
+
+  useEffect(() => {
+    if (pokemonName) {
+      fetchPokemonByNames(pokemonName).then((pokemon) => {
+        setPokemon(pokemon);
+      });
+    }
+  }, [pokemonName]);
+
+  const ChangePokemonName = (name) => {
+    setPokemonName(name);
+  };
+
+  return (
+    <>
+      <ColorPicker options={colorPickerOptions} />
+      <Status isOnline={user1.status} />
+      <ProductList products={products} />
+      <Counter InitialValue={0} />
+      <DropDown />
+      <Form />
+      <div style={{ border: "5px solid #00ffd9" }}>
+        <FormPokemon addPokemonName={ChangePokemonName} />
+        {pokemon && <PokemonInfo pokemon={pokemon} />}
+      </div>
+    </>
+  );
+};
 
 export default App;

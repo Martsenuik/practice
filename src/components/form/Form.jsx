@@ -1,97 +1,98 @@
-import React from "react";
+import { useState } from "react";
 
-export class Form extends React.Component {
-  state = {
-    name: "",
-    mail: "",
-    message: "",
-    expirence: "junior",
-    agree: false,
+export const Form = () => {
+  const [name, setName] = useState("");
+  const [mail, setMail] = useState("");
+  const [message, setMessage] = useState("");
+  const [expirence, setExpirence] = useState("junior");
+  const [agree, setAgree] = useState(false);
+
+  const handleChangeName = (e) => {
+    const { value } = e.target;
+    setName(value);
+  };
+  const handleChangeEmail = (e) => {
+    const { value } = e.target;
+    setMail(value);
+  };
+  const handleChangeRadio = (e) => {
+    const { value } = e.target;
+    setExpirence(value);
   };
 
-  handleChange = (e) => {
-    const { name, value } = e.target;
-    this.setState({ [name]: value });
-  };
-  handleSubmit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.setState({
-      message: `Користувач ${this.state.name} зареєструвався під поштою ${this.state.mail}`,
-    });
+    setMessage(`Користувач ${name} зареєструвався під поштою ${mail}`);
   };
-  handleChekChange = () => {
-    this.setState((prevState) => ({ agree: !prevState.agree }));
+  const handleChekChange = () => {
+    setAgree(!agree);
   };
 
-  render() {
-    return (
-      <div style={{ border: "5px solid red" }}>
-        <form onSubmit={this.handleSubmit}>
-          <h2>Форма</h2>
-          <label>
-            Name
-            <input
-              onChange={this.handleChange}
-              type="text"
-              name="name"
-              value={this.state.name}
-            />
-          </label>
-          <label>
-            Email
-            <input
-              onChange={this.handleChange}
-              type="email"
-              name="mail"
-              value={this.state.mail}
-            />
-          </label>
-          <button type="submit" name="button">
-            Click
-          </button>
-        </form>
-        <p>{this.state.message}</p>
-        <b>Професфйний рівень</b>
+  return (
+    <div style={{ border: "5px solid #ffa200" }}>
+      <form onSubmit={handleSubmit}>
+        <h2>Форма 📈👥📊</h2>
         <label>
-          junior
+          Name
           <input
-            onChange={this.handleChange}
-            type="radio"
-            name="expirence"
-            value="junior"
-            checked={this.state.expirence === "junior"}
+            onChange={handleChangeName}
+            type="text"
+            name="name"
+            value={name}
           />
         </label>
+        <label>
+          Email
+          <input
+            onChange={handleChangeEmail}
+            type="email"
+            name="mail"
+            value={mail}
+          />
+        </label>
+        <button type="submit" name="button">
+          Click
+        </button>
+      </form>
+      <p>{message}</p>
+      <b>який у вас рівень?</b>
+      <br />
+      <label>
+        junior
+        <input
+          onChange={handleChangeRadio}
+          type="radio"
+          name="expirence"
+          value="junior"
+          checked={expirence === "junior"}
+        />
+      </label>
 
-        <label>
-          middle
-          <input
-            onChange={this.handleChange}
-            type="radio"
-            name="expirence"
-            value="middle"
-            checked={this.state.expirence === "middle"}
-          />
-        </label>
-        <label>
-          senior
-          <input
-            onChange={this.handleChange}
-            type="radio"
-            name="expirence"
-            value="senior"
-            checked={this.state.expirence === "senior"}
-          />
-        </label>
-        <label>
-          <input
-            onChange={this.handleChekChange}
-            type="checkbox"
-            name="agree"
-          />
-          Погоджуюсь з умовами
-        </label>
-      </div>
-    );
-  }
-}
+      <label>
+        middle
+        <input
+          onChange={handleChangeRadio}
+          type="radio"
+          name="expirence"
+          value="middle"
+          checked={expirence === "middle"}
+        />
+      </label>
+      <label>
+        senior
+        <input
+          onChange={handleChangeRadio}
+          type="radio"
+          name="expirence"
+          value="senior"
+          checked={expirence === "senior"}
+        />
+      </label>
+      <br />
+      <label>
+        <input onChange={handleChekChange} type="checkbox" name="agree" />
+        Погоджуюсь з умовами
+      </label>
+    </div>
+  );
+};
