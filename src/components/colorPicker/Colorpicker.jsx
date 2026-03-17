@@ -3,7 +3,7 @@ import React from "react";
 export class ColorPicker extends React.Component {
   render() {
     return (
-      <div style={{ border: "5px solid red" }}>
+      <div style={{ border: "15px solid red" }}>
         <h2 className="text">Color Picker</h2>
         <ul>
           {this.props.options.map(({ label, color }) => {

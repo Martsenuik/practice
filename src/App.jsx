@@ -30,13 +30,26 @@ const products = ["Хліб", "Молоко", "Сир", "Яблука"];
 export const App = () => {
   const [pokemon, setPokemon] = useState(null);
   const [pokemonName, setPokemonName] = useState("");
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (pokemonName) {
-      fetchPokemonByNames(pokemonName).then((pokemon) => {
-        setPokemon(pokemon);
-      });
+    if (!pokemonName) {
+      setPokemon(null);
+      setError(null);
+      return;
     }
+    setLoading(true);
+    fetchPokemonByNames(pokemonName)
+      .then((pokemon) => {
+        setPokemon(pokemon);
+      })
+      .catch((error) => {
+        setError(error.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, [pokemonName]);
 
   const ChangePokemonName = (name) => {
@@ -51,9 +64,12 @@ export const App = () => {
       <Counter InitialValue={0} />
       <DropDown />
       <Form />
-      <div style={{ border: "5px solid #00ffd9" }}>
+      <div style={{ border: "15px solid #00ffd9" }}>
         <FormPokemon addPokemonName={ChangePokemonName} />
         {pokemon && <PokemonInfo pokemon={pokemon} />}
+        {error && !pokemonName && <p>{error}</p>}
+        {pokemonName && <p>{pokemonName.name}</p>}
+        {loading && <p>Loading ...</p>}
       </div>
     </>
   );

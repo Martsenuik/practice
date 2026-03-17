@@ -1,4 +1,7 @@
 export const PokemonInfo = ({ pokemon }) => {
+  if (!pokemon || !pokemon.sprites) {
+    return <p>Type name of Pokemon</p>;
+  }
   return (
     <>
       <h4>{pokemon?.name}</h4>

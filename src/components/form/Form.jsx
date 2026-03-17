@@ -29,7 +29,7 @@ export const Form = () => {
   };
 
   return (
-    <div style={{ border: "5px solid #ffa200" }}>
+    <div style={{ border: "15px solid #ffa200" }}>
       <form onSubmit={handleSubmit}>
         <h2>Форма 📈👥📊</h2>
         <label>

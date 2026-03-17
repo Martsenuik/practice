@@ -29,7 +29,7 @@ export class Counter extends React.Component {
 
   render() {
     return (
-      <div style={{ border: "5px solid blue" }}>
+      <div style={{ border: "15px solid blue" }}>
         <div style={{ width: "600px" }}>
           <div className="card-body">
             <h5 className="card-title text-center fs-1">Counter</h5>
