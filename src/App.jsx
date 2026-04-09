@@ -9,6 +9,7 @@ import { Form } from "./components/form/form";
 import { fetchPokemonByNames } from "./components/pokemon/PokemonApi";
 import { FormPokemon } from "./components/pokemon/FormPokemon";
 import { PokemonInfo } from "./components/pokemon/PokemonInfo";
+import { FilterTask } from "./components/useCallback&useMemo/FilterTask";
 
 const colorPickerOptions = [
   { label: "red", color: "#F44336" },
@@ -71,6 +72,7 @@ export const App = () => {
         {pokemonName && <p>{pokemonName.name}</p>}
         {loading && <p>Loading ...</p>}
       </div>
+      <FilterTask />
     </>
   );
 };
